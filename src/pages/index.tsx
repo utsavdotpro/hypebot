@@ -7,6 +7,7 @@ const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [hypeMessage, setHypeMessage] = useState("");
+  const [hypeImageURL, setHypeImageURL] = useState("");
 
   const generateHype = async () => {
     // @ts-ignore: user can input a number
@@ -42,6 +43,19 @@ const Home: NextPage = () => {
     const data = await response.json();
 
     setHypeMessage(data.choices[0].text);
+
+    generateGif();
+  };
+
+  const generateGif = async () => {
+    const apiKey = "JhvEcKFN3ndwPEMqO29ojkjj0ymHIug2";
+    const response = await fetch(
+      `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${input}&rating=g`
+    );
+
+    const data = await response.json();
+
+    setHypeImageURL(data.data.images.original.url);
   };
 
   return (
@@ -87,6 +101,11 @@ const Home: NextPage = () => {
                   <div className="mr-2 text-4xl">{'"'}</div>
                   <div className="text-lg text-white ">{hypeMessage}</div>
                 </div>
+
+                <img
+                  src={hypeImageURL}
+                  className="w-[90%] mx-auto mt-4 rounded-md"
+                />
               </>
             )}
           </div>
