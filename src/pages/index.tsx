@@ -5,6 +5,8 @@ import { useState } from "react";
 
 const Home: NextPage = () => {
   const [isLoading, setLoading] = useState(false);
+  const [input, setInput] = useState("");
+  const [hypeMessage, setHypeMessage] = useState("");
 
   const generateHype = async () => {
     setLoading(true);
@@ -21,8 +23,7 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify({
         model: "text-davinci-003",
-        prompt:
-          'Respond to every input in the style of an extreme hype person who is building the user up and praising them with at least two paragraphs of encouragement. If the input is inappropriate then don\'t repeat back what the inappropriate input is but just give a general style encouragement or compliment that could apply to anyone. Do not give me a sample input. Don\'t use "input" and "response" in your answer but just give a response as if you are a human best friend responding, praising and complimenting them in a flowery, over-the-top way.',
+        prompt: `Hype me up for ${input} and tell me how amazing I am.`,
         temperature: 0.7,
         max_tokens: 1839,
         top_p: 1,
@@ -33,7 +34,9 @@ const Home: NextPage = () => {
 
     setLoading(false);
 
-    return await response.json();
+    const data = await response.json();
+
+    setHypeMessage(data.choices[0].text);
   };
 
   return (
@@ -57,6 +60,8 @@ const Home: NextPage = () => {
             <textarea
               className="w-full p-2 mb-2 bg-white rounded-md"
               placeholder="What are you thinking to do?"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
             />
 
             <button
@@ -71,10 +76,14 @@ const Home: NextPage = () => {
           <div className="w-10" />
 
           <div className="flex justify-center flex-1 items-top">
-            <div className="text-4xl">{'"'}</div>
-            <div className="w-full h-40 p-2 text-lg text-white rounded-md">
-              Our wise bot will put the hype in your life!
-            </div>
+            {hypeMessage && (
+              <>
+                <div className="text-4xl">{'"'}</div>
+                <div className="w-full h-40 p-2 text-lg text-white rounded-md">
+                  {hypeMessage}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </main>
