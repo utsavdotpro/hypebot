@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify({
         model: "text-davinci-003",
-        prompt: `I am thinking to do something. Write a motivational message to hype me up accomplishing it. Make it comedic, fun and use emojis. I am thinking to ${input}`,
+        prompt: `I am thinking to do something. Write a motivational message to hype me up accomplishing it. Make it comedic, fun and use a few emojis. I am thinking to ${input}`,
         temperature: 0.7,
         max_tokens: 1839,
         top_p: 1,
