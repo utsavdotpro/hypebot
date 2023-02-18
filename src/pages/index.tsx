@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 const Home: NextPage = () => {
+  const generateHype = () => {};
+
   return (
     <div>
       <Head>
@@ -11,9 +13,34 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="p-8">
-        Hello from <a href="https://nextjs.org/">NextJS</a> with{" "}
-        <a href="https://tailwindcss.com/">Tailwind</a> in{" "}
-        <a href="https://typescriptlang.org/">TypeScript</a> starter template!
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-4xl font-bold">Hypebot</h1>
+          <p>We help you do whatever you want to do but not feel like doing!</p>
+
+          <hr className="w-40 mx-auto mt-4" />
+        </div>
+
+        <div className="flex">
+          <div className="flex-1">
+            <textarea
+              className="w-full p-2 mb-2 bg-white rounded-md"
+              placeholder="What are you thinking to do?"
+            />
+
+            <button className="inline-block px-4 py-3 text-sm font-semibold text-center text-white uppercase transition duration-200 ease-in-out bg-gray-800 rounded-md cursor-pointer hover:bg-gray-900">
+              Hype me!
+            </button>
+          </div>
+
+          <div className="w-10" />
+
+          <div className="flex justify-center flex-1 items-top">
+            <div className="text-4xl">{'"'}</div>
+            <div className="w-full h-40 p-2 text-lg text-white rounded-md">
+              Our wise bot will put the hype in your life!
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
