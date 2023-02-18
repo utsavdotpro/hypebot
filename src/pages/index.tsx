@@ -10,8 +10,11 @@ const Home: NextPage = () => {
   const [hypeImageURL, setHypeImageURL] = useState("");
 
   const generateHype = async () => {
-    // @ts-ignore: user can input a number
-    if (!isNaN(input)) {
+    if (!input) {
+      setHypeMessage("Can't hype you for not doing anything! 🤷");
+      return;
+      // @ts-ignore: user can input a number
+    } else if (!isNaN(input)) {
       setHypeMessage("Do I look like a calculator to you? 🤨");
       return;
     }
@@ -24,8 +27,7 @@ const Home: NextPage = () => {
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer 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",
+        Authorization: `Bearer ${process.env.OPEN_API_TOKEN}`,
       },
       body: JSON.stringify({
         model: "text-davinci-003",
@@ -42,15 +44,14 @@ const Home: NextPage = () => {
 
     const data = await response.json();
 
-    setHypeMessage(data.choices[0].text);
+    setHypeMessage(data.choices?.[0].text || "Something went wrong!");
 
     generateGif();
   };
 
   const generateGif = async () => {
-    const apiKey = "JhvEcKFN3ndwPEMqO29ojkjj0ymHIug2";
     const response = await fetch(
-      `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${input}&rating=g`
+      `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_API_KEY}&tag=${input}&rating=g`
     );
 
     const data = await response.json();
