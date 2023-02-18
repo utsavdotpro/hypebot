@@ -9,6 +9,12 @@ const Home: NextPage = () => {
   const [hypeMessage, setHypeMessage] = useState("");
 
   const generateHype = async () => {
+    // @ts-ignore: user can input a number
+    if (!isNaN(input)) {
+      setHypeMessage("Do I look like a calculator to you? 🤨");
+      return;
+    }
+
     setLoading(true);
 
     const response = await fetch("https://api.openai.com/v1/completions", {
@@ -22,7 +28,7 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify({
         model: "text-davinci-003",
-        prompt: `Hype me up for ${input} and tell me how amazing I am.`,
+        prompt: `I am thinking to do something. Write a motivational message to hype me up accomplishing it. Make it comedic, fun and use emojis. I am thinking to ${input}`,
         temperature: 0.7,
         max_tokens: 1839,
         top_p: 1,
