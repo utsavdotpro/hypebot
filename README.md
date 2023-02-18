@@ -8,6 +8,7 @@ Simple tool built with GPT3 to hype you up for whatever thing you want to do!
 - [NextJS](https://nextjs.org) v12
 - [Tailwind](https://tailwindcss.com) v3
 - [TypeScript](https://typescriptlang.org) v4
+- [DaisyUI](https://daisyui.com/)
 - OpenAI GPT3
 - Giphy API
 
