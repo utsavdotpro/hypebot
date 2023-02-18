@@ -1,8 +1,40 @@
+import Loader from "@elements/Loader";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 
 const Home: NextPage = () => {
-  const generateHype = () => {};
+  const [isLoading, setLoading] = useState(false);
+
+  const generateHype = async () => {
+    setLoading(true);
+
+    const response = await fetch("https://api.openai.com/v1/completions", {
+      method: "POST",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        // 'application': 'application/x-www-form-urlencoded',
+        Authorization:
+          "Bearer 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",
+      },
+      body: JSON.stringify({
+        model: "text-davinci-003",
+        prompt:
+          'Respond to every input in the style of an extreme hype person who is building the user up and praising them with at least two paragraphs of encouragement. If the input is inappropriate then don\'t repeat back what the inappropriate input is but just give a general style encouragement or compliment that could apply to anyone. Do not give me a sample input. Don\'t use "input" and "response" in your answer but just give a response as if you are a human best friend responding, praising and complimenting them in a flowery, over-the-top way.',
+        temperature: 0.7,
+        max_tokens: 1839,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      }),
+    });
+
+    setLoading(false);
+
+    return await response.json();
+  };
 
   return (
     <div>
@@ -27,8 +59,12 @@ const Home: NextPage = () => {
               placeholder="What are you thinking to do?"
             />
 
-            <button className="inline-block px-4 py-3 text-sm font-semibold text-center text-white uppercase transition duration-200 ease-in-out bg-gray-800 rounded-md cursor-pointer hover:bg-gray-900">
-              Hype me!
+            <button
+              className="inline-block px-4 py-3 text-sm font-semibold text-center text-white uppercase transition duration-200 ease-in-out bg-gray-800 rounded-md cursor-pointer hover:bg-gray-900"
+              onClick={generateHype}
+              disabled={isLoading}
+            >
+              {!isLoading ? "Hype me!" : <Loader />}
             </button>
           </div>
 
