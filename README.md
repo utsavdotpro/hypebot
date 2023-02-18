@@ -1,33 +1,15 @@
-[<img src="https://ik.imagekit.io/iutsav/fork_l0RKONb5l.svg" height="30" />](https://githubbox.com/utsavdotpro/starter-nextjs-tailwind-ts)
+# Hypebot
+Simple tool built with GPT3 to hype you up for whatever thing you want to do!
 
-# NextJS with Tailwind in TypeScript
-A starter template for NextJS with Tailwind in TypeScript with an opinionated [modular project structure](#project-structure).
+<img src="./sample/main.png" width="100%">
 
 ### Technologies
 
 - [NextJS](https://nextjs.org) v12
 - [Tailwind](https://tailwindcss.com) v3
 - [TypeScript](https://typescriptlang.org) v4
-
----
-
-## How to Reuse Locally?
-
-Use `degit` to download the repository locally.
-
-> ### ❓ What is [degit](https://github.com/Rich-Harris/degit)?
-> degit downloads a copy of git repository with downloading its entire git history.
-
-Install degit globally.
-
-````bash
-npm install -g degit
-````
-
-Download the latest version
-````bash
-degit utsavdotpro/starter-nextjs-tailwind-ts
-````
+- OpenAI GPT3
+- Giphy API
 
 ---
 
@@ -75,8 +57,10 @@ project
 |   |   |                     ℹ️ keep your util functions
 ```
 
-## Deployment
+## Collaborators
 
-The easiest way to deploy your Next.js app is to use the [Vercel](https://vercel.com/) platform from the creators of Next.js.
-
-Check out the Next.js deployment [docs](https://nextjs.org/docs/deployment) for more details.
+- [Devesh Pawar](https://www.linkedin.com/in/devesh-pawar-60304113b/)
+- [Mandy Stadtmiller](https://twitter.com/mandystadt)
+- [Aditya Bhushan Dwivedi](https://twitter.com/adi_bhushan)
+- [Dylan Sleith](https://twitter.com/dylansleith)
+- [Tushar Darewar](https://twitter.com/TusharDarewar)
